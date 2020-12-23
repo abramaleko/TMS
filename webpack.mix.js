@@ -16,4 +16,10 @@ mix.js('resources/js/app.js', 'public/js')
         require('postcss-import'),
         require('tailwindcss'),
     ])
+    .sass('resources/sass/TMS.scss','public/css')
     .webpackConfig(require('./webpack.config'));
+
+           //for cache busting
+    if (mix.inProduction()) {
+        mix.version();
+    }

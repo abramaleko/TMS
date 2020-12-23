@@ -20,6 +20,14 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="account_type" value="{{ __('Account type') }}" />
+                <select id="country" class="block mt-1 w-full form-input rounded-md shadow-sm" name="account_type">
+                    <option>Landlord</option>
+                    <option>Tenant</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>

@@ -21297,15 +21297,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/TMS.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/TMS.scss ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***********************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/css/app.css ***!
-  \***********************************************************/
+/*!*************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/TMS.scss ./resources/css/app.css ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/TMS/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/TMS/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /opt/lampp/htdocs/TMS/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /opt/lampp/htdocs/TMS/resources/sass/TMS.scss */"./resources/sass/TMS.scss");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/TMS/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
