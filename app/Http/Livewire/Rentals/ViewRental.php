@@ -14,6 +14,11 @@ class ViewRental extends Component
         $this->rental_id=$rental_id;
         $this->rental=Rental::find($rental_id);
     }
+    
+    public function registerTenant()
+    {
+        return redirect()->route('register_tenant');
+    }
 
     public function render()
     {
