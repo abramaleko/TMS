@@ -72,7 +72,7 @@
              </div>
          <div class="md:ml-4 mb-4">
             <label for="available" class="text-gray-800">Available for rent:</label>
-            <select id="available"  wire:model.defer="availability" class=" focus:outline-none ml-5 px-4 py-2 w-40 rounded-md  w-56 md:w-48 border-2 border-blue-400 sm:mt-2" >
+            <select id="available"  wire:model.defer="availability" class=" focus:outline-none ml-5 px-4 py-2 w-40 rounded-md  md:w-48 border-2 border-blue-400 sm:mt-2" >
               <option selected>Choose..</option>
               <option>Yes</option>
               <option>No</option>
