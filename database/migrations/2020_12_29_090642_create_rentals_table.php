@@ -17,9 +17,9 @@ class CreateRentalsTable extends Migration
             $table->id();
             $table->bigInteger('landlord_id')->unsigned();
             $table->foreign('landlord_id')->references('id')->on('users');
+            $table->bigInteger('contract_id')->unsigned()->nullable();
             $table->string('region');
             $table->string('district');
-            $table->string('ward');
             $table->text('description');
             $table->string('image_1')->nullable();
             $table->string('image_2')->nullable();
@@ -27,7 +27,7 @@ class CreateRentalsTable extends Migration
             $table->string('image_4')->nullable();
             $table->string('image_5')->nullable();
             $table->bigInteger('price');
-            $table->string('Availability',10);
+            $table->string('negotiation');
             $table->string('space_for',50);
             $table->timestamps();
         });

@@ -1,10 +1,10 @@
 <div class="p-3">
-    <form method="POST" autocomplete="off" wire:submit.prevent="registerRental">
+    <form method="POST" autocomplete="off" wire:submit.prevent="registerRental" enctype="multipart/form-data">
         @csrf
         @error('country') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
         @error('region') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
         @error('district') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
-        @error('ward') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
+        @error('negotiation') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
         @error('space_for') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
         @error('price') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
         @error('availability') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
@@ -13,7 +13,7 @@
     <div class="flex flex-wrap">
         <div class="mb-4">
         <label for="region" class="text-gray-800 ">Region:</label>
-        <select id="region" wire:model.defer="region" class="ml-5 px-4 py-2 w-56 md:w-40 rounded-md  border-2 border-blue-400 sm:mt-2 focus:outline-none" >
+        <select id="region" wire:model.defer="region" class="ml-5 px-4 py-2 w-56 md:w-45 rounded-md  border-2 border-blue-400 sm:mt-2 focus:outline-none" >
         <option>Choose..</option>
         <option>Arusha</option>
         <option>Dar es Salaam	</option>
@@ -50,34 +50,41 @@
 
        <div class="md:ml-4 mb-4">
        <label for="district" class="text-gray-800">District:</label>
-       <input type="text" id="district" wire:model.defer="district" class="focus:outline-none ml-5 px-4 py-2 w-56 md:w-40 rounded-md border-2 border-blue-400 form-input sm:mt-2" placeholder="Kinondoni">
-        </div>
-
-       <div class=" md:ml-4 mb-4">
-        <label for="Ward" class="text-gray-800">Ward:</label>
-        <input type="text" wire:model.defer="ward" id="ward" class="focus:outline-none ml-5 px-4 py-2 w-56 md:w-40 rounded-md border-2 border-blue-400 form-input sm:mt-2" placeholder="">
-         </div>
+       <input type="text" id="district" wire:model="district" class="focus:outline-none ml-5 px-4 py-2 w-56 md:w-45 rounded-md border-2 border-blue-400 form-input sm:mt-2" placeholder="i.e Kinondoni">
+       @if (count($districtResults)>0)
+       <div class="bg-gray-300 rounded-b-md hover:bg-blue-200 ml-20">
+           @foreach ($districtResults as $districtResult)
+           <span wire:click="setInfo('{{$districtResult}}')"  class="px-5 py-2 block  text-gray-700 cursor-pointer ">{{$districtResult}} <small>&nbsp;&nbsp;<b>(District)</b></small></span>
+           @endforeach
+       </div>   
+      @endif 
+      </div>
 
          <div class="mb-4 md:ml-4">
             <label for="space for" class="text-gray-800">Rented out</label>
-            <select id="space for" wire:model.defer="space_for" class="focus:outline-none ml-5 px-4 py-2 w-40 rounded-md  w-56 md:w-40 border-2 border-blue-400 sm:mt-2" >
+            <select id="space for" wire:model.defer="space_for" class="focus:outline-none ml-5 px-4 py-2 w-45 rounded-md  md:w-45 border-2 border-blue-400 sm:mt-2" >
               <option selected>Choose..</option>
-              <option>House/Rooms</option>
-              <option>Office Space</option>
+              <option class="px-2">Single Family House</option>
+              <option class="px-2">Appartments</option>
+              <option class="px-2">Hotels</option>
+              <option class="px-2">Villa</option>
+              <option class="px-2">Commercial buildings</option>
+              <option class="px-2">Industrial buildings</option>
             </select>
              </div>
-         <div class="md:ml-4 mb-4">
+         <div class="mb-4">
             <label for="price" class="text-gray-800">Price per month (Tshs):</label>
-            <input type="number" wire:model.defer="price" class=" focus:outline-none ml-3 px-4 py-2 w-56  md:w-40 rounded-md border-2 border-blue-400 form-input sm:mt-2" min="1">
+            <input type="number" wire:model.defer="price" class=" focus:outline-none ml-3 px-4 py-2 w-56  md:w-45 rounded-md border-2 border-blue-400 form-input sm:mt-2" min="1">
              </div>
-         <div class="md:ml-4 mb-4">
-            <label for="available" class="text-gray-800">Available for rent:</label>
-            <select id="available"  wire:model.defer="availability" class=" focus:outline-none ml-5 px-4 py-2 w-40 rounded-md  md:w-48 border-2 border-blue-400 sm:mt-2" >
-              <option selected>Choose..</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-         </div>    
+
+             <div class="mb-4 md:ml-4">
+              <label for="negotiation" class="text-gray-800">Price negotiation :</label>
+              <select id="negotiation" wire:model.defer="negotiation" class="focus:outline-none ml-5 px-4 py-2 w-45 rounded-md  w-56 md:w-40 border-2 border-blue-400 sm:mt-2" >
+                <option selected>Choose..</option>
+                <option>Negotiable</option>
+                <option>Fixed price</option>
+              </select>
+               </div>
    </div>
 
    <div class="mb-4 block">
@@ -88,7 +95,7 @@
   <div class="mb-4 block">
     <h1 class=" text-3xl font-bold text-base text-gray-700">Images</h1>
     <p class="text-red-600 text-serif">*****Images are optional to upload*****</p>
-    <p class="text-gray-500">A maximum of five photos can be uploaded of format jpg, jpeg of less than 2MB</p>
+    <p class="text-gray-500">A maximum of five photos can be uploaded of format jpg, jpeg of less than 3MB</p>
     @error('image_1') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
     @error('image_2') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
     @error('image_3') <span class=" block error font-bold px-4 text-red-600 mb-2">{{ $message }}</span> @enderror
@@ -122,7 +129,7 @@
             <svg class="stroke-current text-gray-500">
                 <path d="M35 15 V42 M20 28 H49" style="stroke-width:3;"  />
             </svg>
-            <input id="file-upload1" wire:model="image_1" type="file" class="sr-only"/>
+            <input id="file-upload1" wire:model.defer="image_1" type="file" class="sr-only"/>
           </label>    
           @endif
       </div>
@@ -139,7 +146,7 @@
         <svg class="stroke-current text-gray-500">
             <path d="M35 15 V42 M20 28 H49" style="stroke-width:3;"  />
         </svg>
-        <input id="file-upload2"  wire:model="image_2" type="file" class="sr-only"/>
+        <input id="file-upload2"  wire:model.defer="image_2" type="file" class="sr-only"/>
       </label> 
        @endif
       @else
@@ -159,7 +166,7 @@
         <svg class="stroke-current text-gray-500">
             <path d="M35 15 V42 M20 28 H49" style="stroke-width:3;"  />
         </svg>
-        <input id="file-upload3" wire:model="image_3" type="file" class="sr-only">
+        <input id="file-upload3" wire:model.defer="image_3" type="file" class="sr-only">
       </label>  
       @endif
       @else
@@ -179,7 +186,7 @@
           <svg class="stroke-current text-gray-500">
               <path d="M35 15 V42 M20 28 H49" style="stroke-width:3;"  />
           </svg>
-          <input id="file-upload4" wire:model="image_4" type="file" class="sr-only">
+          <input id="file-upload4" wire:model.defer="image_4" type="file" class="sr-only">
         </label>
         @endif
       @else
@@ -199,7 +206,7 @@
         <svg class="stroke-current text-gray-500">
             <path d="M35 15 V42 M20 28 H49" style="stroke-width:3;"  />
         </svg>
-        <input id="file-upload5" wire:model="image_5" type="file" class="sr-only">
+        <input id="file-upload5" wire:model.defer="image_5" type="file" class="sr-only">
       </label>
       @endif
       </div>

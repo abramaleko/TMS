@@ -15,7 +15,7 @@ class CheckUser
     }
  
     // //checks if the rental owner id matches the the current user authenticated
-    function LandlordIsOwner($id)
+   static function LandlordIsOwner($id)
     {
         $currentUser=Auth::user()->id;
         if ($currentUser==$id) {
