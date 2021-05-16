@@ -32,17 +32,26 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+            <div class="flex items-center justify-start my-7">
 
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
+                <x-jet-button class="py-3 px-6" >
+                    {{ __('Log in') }}
                 </x-jet-button>
+
+                @if (Route::has('password.request'))
+                <a class="ml-4 underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
+
             </div>
+
+            <div>
+                <h1 class="font-black text-lg text-center text-gray-800">OR</h1>
+                <div class="py-4 flex justify-center">
+                 <a href="{{route('google-signin')}}" class="border-2 border-gray-300 hover:bg-blue-500 text-black hover:bg-transparent font-semibold hover:text-white border-transparent px-7 py-3"><img src="{{asset('icons/google.png')}}" alt="google" class="h-8 px-2 inline"> Sign in with Google</a>
+             </div>
+
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>

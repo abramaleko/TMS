@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleSignInController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Rentals\ViewRental;
 use App\Http\Livewire\Rentals\RegisterTenant;
@@ -14,8 +15,6 @@ use App\Http\Livewire\Bids\SentBids;
 use App\Http\Livewire\Bids\ReceivedBids;
 use App\Http\Livewire\Bids\ViewBid;
 use App\Http\Livewire\Messages\MessageTemplate;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +47,9 @@ Route::middleware(['auth:sanctum', 'verified','checkTenant'])->get('/sentbids',S
 Route::middleware(['auth:sanctum', 'verified','checkLandlord'])->get('/receivedbids',ReceivedBids::class)->name('Landlord-bids');
 Route::middleware(['auth:sanctum', 'verified'])->get('/bid/info/{id}',ViewBid::class)->name('view-bid');
 Route::middleware(['auth:sanctum', 'verified'])->get('/messages',MessageTemplate::class)->name('messages');
+
+
+//google sign in routes
+Route::get('/auth/redirect',[GoogleSignInController::class, 'googleredirect'])->name('google-signin');
+Route::get('/auth/callback',[GoogleSignInController::class, 'callback']);
+
