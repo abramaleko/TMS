@@ -19,14 +19,14 @@
               </div>
               <div class="">
                 <label for="negotiation" class="text-gray-700 text-light ml-6 text-lg">Price range </label>
-                <select aria-placeholder="Range" class="focus:outline-none ml-2 px-4 py-2 rounded-lg  w-56 md:w-50 focus:border-blue-500 border-2 text-gray-700 bg-white" >
+                <select wire:model.defer="range"aria-placeholder="Range" class=" form-select focus:outline-none ml-2 px-4 py-2 rounded-lg  w-56 md:w-50 focus:border-blue-500 border-2 text-gray-700 bg-white" >
                  <option selected class="px-2">All</option>
                  <option class="px-2">5,000-100,000 Tshs</option>
                  <option class="px-2">100,000-500,000 Tshs</option>
                  <option class="px-2">500,000-1,000,000 Tshs</option>
                  <option class="px-2">Above 1,000,000 Tshs</option>
                </select>
-               <button class="ml-4 border-2 rounded-xl  px-5 py-2 bg-blue-700 focus:outline-white hover:bg-blue-500	text-white  tracking-wide font-bold " type="submit">Search</button>
+               <button wire:click="search" class="ml-4 border-2 rounded-xl  px-5 py-2 bg-blue-700 focus:outline-white hover:bg-blue-500	text-white  tracking-wide font-bold " type="submit">Search</button>
               </div>
             </div>
         </div>

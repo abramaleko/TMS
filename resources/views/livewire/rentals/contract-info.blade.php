@@ -1,3 +1,6 @@
+<x-slot name="title">
+    Contract details
+</x-slot>
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         {{ __('Contract Details') }}
@@ -39,9 +42,9 @@
                  Day
              @endif</h1>
               <div class="flex flex-wrap mt-4 ml-4">
-                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Price :</b>  {{$details->rental->price}} Monthly</h1>
-                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Amount deposited (Tshs) :</b>  {{$details->deposited}}</h1>
-                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Remaining balance (Tshs) :</b>  {{$details->balance}}</h1>
+                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Price :</b>  {{number_format($details->rental->price)}} Monthly</h1>
+                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Amount deposited (Tshs) :</b>  {{number_format($details->deposited)}}</h1>
+                <h1 class="text-gray-700 text-lg mb-4 sm:ml-8"><b>Remaining balance (Tshs) :</b>  {{number_format($details->balance)}}</h1>
               </div>
               <div class="block ml-4">
                 <h1 class="text-gray-700 text-lg mb-2 sm:ml-8"><b>Comments:</b></h1>
@@ -51,13 +54,13 @@
                 <h1 class="text-gray-700 text-2xl mb-4 sm:ml-8"><b>Attachments </b> </h1>
                 <ul class="list-disc list-inside">
                  @if ($details->attach_1)
-                    <li wire:click="downloadAttachments('{{ $details->attach_1}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_1,-12)}} <span class="text-gray-700 text-base ">&nbsp;({{$size_1}}Mb)</span></li> 
+                    <li wire:click="downloadAttachments('{{ $details->attach_1}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_1,-12)}} <span class="text-gray-700 text-base no-underline ">&nbsp;({{round($size_1,1)}}Mb)</span></li> 
                  @endif
                  @if ($details->attach_2)
-                 <li wire:click="downloadAttachments('{{ $details->attach_2}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_2,-12)}} <span class="text-gray-700 text-base ">&nbsp;({{$size_2}}Mb)</span></li>
+                 <li wire:click="downloadAttachments('{{ $details->attach_2}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_2,-12)}} <span class="text-gray-700 text-base no-underline">&nbsp;({{round($size_2)}}Mb)</span></li>
                 @endif
                 @if ($details->attach_3)
-                <li wire:click="downloadAttachments('{{ $details->attach_3}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_3,-12)}} <span class="text-gray-700 text-base ">&nbsp;({{$size_3}}Mb)</span></li>
+                <li wire:click="downloadAttachments('{{ $details->attach_3}}')" class="text-lg sm:ml-8 text-blue-500 hover:underline mb-4 cursor-pointer">.....{{substr( $details->attach_3,-12)}} <span class="text-gray-700 text-base no-underline">&nbsp;({{round($size_3)}}Mb)</span></li>
                @endif
                 </ul>
                 {{-- <button wire:click="downloadAttachments" class="px-4 py-2 sm:ml-8 focus:outline-white text-white bg-blue-600 hover:bg-blue-400 my-4"><img src="{{asset('icons/download.png')}}" alt="download" class="h-8 inline"> &nbsp;&nbsp; DOWNLOAD ALL</button> --}}

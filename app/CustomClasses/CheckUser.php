@@ -13,7 +13,16 @@ class CheckUser
             return true;
         }
     }
- 
+     function userIsTenant()
+     {
+        $user=Auth::user()->account_type;
+        if($user=='Tenant')
+        {
+            return true;
+        }
+     }
+
+
     // //checks if the rental owner id matches the the current user authenticated
    static function LandlordIsOwner($id)
     {

@@ -31,6 +31,7 @@ class RegisterTenant extends Component
        'doc_3' => 'mimes:pdf,docx,doc,jpeg,jpg|max:3072|nullable',
     ];
     
+    //mounts the element
     public function mount($id)
     {
         $this->rental_id=$id;
@@ -54,6 +55,7 @@ class RegisterTenant extends Component
 
     }
     
+    //sets the info for the user after selecting the search result
     public function setInfo($tenantName)
     {
         $info=User::select('email','name')->where('name',$tenantName)->first();

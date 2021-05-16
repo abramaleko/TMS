@@ -1,4 +1,7 @@
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
+    <x-slot name="title">
+        Register tenant
+    </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Register tenant') }}
